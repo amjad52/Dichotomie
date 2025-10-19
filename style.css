@@ -39,4 +39,7 @@ body {
     border: 1px solid #ccc;
     white-space: pre-wrap;
   }
-  
+  p{
+    color: #1a550e;
+    font-size: 10pt;
+  }
