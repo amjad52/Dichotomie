@@ -26,8 +26,6 @@ function f(x, expression) {
       output += `Nouvel intervalle: [${a.toFixed(6)}, ${b.toFixed(6)}]\n`;
     }
   
-    let racine = (a + b) / 2;
-    output += `\nRésultat approché : ${racine}`;
     return output;
   }
   
@@ -45,3 +43,4 @@ function f(x, expression) {
     outputDiv.textContent = result;
   }
   
+
