@@ -1,51 +1,47 @@
 function f(x, expression) {
-    try {
-      return eval(expression);
-    } catch (e) {
-      return NaN;
-    }
+  try {
+    return eval(expression);
+  } catch (e) {
+    return NaN;
   }
-  
-  function dichotomie(longueur, expression) {
-    let a = 0;
-    let b = 1;
-    let output = "";
-  
+}
 
-    if (f(a, expression) * f(b, expression) >= 0) {
-      output += "Erreur : f(a) * f(b) >= 0. Choisissez une autre fonction ou intervalle.\n";
-      return output;
-    }
-  
+function dichotomie(a, b, longueur, expression) {
+  let output = "";
 
-    while ((b - a) > longueur) {
-      let m = (a + b) / 2;
-      if (f(m, expression) * f(a, expression) < 0) {
-        b = m;
-      } else {
-        a = m;
-      }
-      output += `Nouvel intervalle: [${a.toFixed(6)}, ${b.toFixed(6)}]\n`;
-    }
-  
-
-  
+  if (f(a, expression) * f(b, expression) >= 0) {
+    output += "❌ Erreur : f(a) * f(b) >= 0.\nChoisissez un intervalle où f change de signe.\n";
     return output;
   }
-  
-  function calculer() {
-    const expression = document.getElementById("fonction").value;
-    const longueur = parseFloat(document.getElementById("longueur").value);
-    const outputDiv = document.getElementById("output");
-  
-    if (!expression || isNaN(longueur)) {
-      outputDiv.textContent = "Veuillez entrer une fonction valide et une longueur.";
-      return;
-    }
-  
-    const result = dichotomie(longueur, expression);
-    outputDiv.textContent = result;
-  }
-  
 
+  while ((b - a) > longueur) {
+    let m = (a + b) / 2;
+    if (f(m, expression) * f(a, expression) < 0) {
+      b = m;
+    } else {
+      a = m;
+    }
+    output += `Nouvel intervalle: [${a.toFixed(6)}, ${b.toFixed(6)}]\n`;
+  }
+
+  const racine = (a + b) / 2;
+  output += `\n✅ Racine approchée ≈ ${racine.toFixed(6)}`;
+  return output;
+}
+
+function calculer() {
+  const expression = document.getElementById("fonction").value;
+  const a = parseFloat(document.getElementById("a").value);
+  const b = parseFloat(document.getElementById("b").value);
+  const longueur = parseFloat(document.getElementById("longueur").value);
+  const outputDiv = document.getElementById("output");
+
+  if (!expression || isNaN(a) || isNaN(b) || isNaN(longueur)) {
+    outputDiv.textContent = "⚠️ Veuillez entrer une fonction, un intervalle (a, b) et une longueur valides.";
+    return;
+  }
+
+  const result = dichotomie(a, b, longueur, expression);
+  outputDiv.textContent = result;
+}
 
