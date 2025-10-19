@@ -10,7 +10,7 @@ function dichotomie(a, b, longueur, expression) {
   let output = "";
 
   if (f(a, expression) * f(b, expression) >= 0) {
-    output += "❌ Erreur : f(a) * f(b) >= 0.\nChoisissez un intervalle où f change de signe.\n";
+    output += "Erreur : f(a) * f(b) >= 0.\nChoisissez un intervalle où f change de signe.\n";
     return output;
   }
 
@@ -24,8 +24,6 @@ function dichotomie(a, b, longueur, expression) {
     output += `Nouvel intervalle: [${a.toFixed(6)}, ${b.toFixed(6)}]\n`;
   }
 
-  const racine = (a + b) / 2;
-  output += `\n✅ Racine approchée ≈ ${racine.toFixed(6)}`;
   return output;
 }
 
@@ -37,11 +35,10 @@ function calculer() {
   const outputDiv = document.getElementById("output");
 
   if (!expression || isNaN(a) || isNaN(b) || isNaN(longueur)) {
-    outputDiv.textContent = "⚠️ Veuillez entrer une fonction, un intervalle (a, b) et une longueur valides.";
+    outputDiv.textContent = "Veuillez entrer une fonction, un intervalle (a, b) et une longueur valides.";
     return;
   }
 
   const result = dichotomie(a, b, longueur, expression);
   outputDiv.textContent = result;
 }
-
